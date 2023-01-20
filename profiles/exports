@@ -1,0 +1,6 @@
+# Disables MacOS prompt about zsh being the default shell
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Add this variable at the end of a command to direct 
+# STDOUT and STDERR to /dev/null
+export NULLOUTPUT=">/dev/null 2>&1"

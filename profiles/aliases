@@ -1,0 +1,35 @@
+# It's almost the de-facto alias by now.
+alias ll="ls -lh"
+
+# Rather than use rm, move it to the Trash
+alias trash="mv -i -t ~/.Trash/ "
+
+# Because searching for env vars is annoying. 
+alias printenv="printenv | sort"
+
+
+# If Terraform is installed, then create terraform aliases
+if [ $(which terraform) ];then
+    alias tf="terraform"
+    alias tfi="terraform init"
+    alias tfiu="terraform init -upgrade"
+    alias tfa="terraform apply"
+    # The reason I did 3 As is I didn't want someone to accidentally
+    # type `tfaa` when they mean to type `tfa` and have it auto-approve
+    alias tfaaa="terraform apply -auto-approve"
+    alias tfp="terraform plan"
+    alias tfo="terraform output"
+    alias tfr="terraform refresh"
+    # This translates to yyyy-mm-dd.plan
+    alias tfpo="terraform plan -out $(date +'%Y-%m-%d').plan"
+fi
+
+# If VS Code is installed, create an alias for `code`
+#
+# Fun fact - You can also create a contextual menu for MacOS Finder with 
+# MacOS Automator: https://zeroonelabs.com/mac/open-with-vs-code-shortcut-in-finder
+if [ -f "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" ];then
+    alias code="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+fi
+
+
