@@ -29,7 +29,14 @@ fi
 # Fun fact - You can also create a contextual menu for MacOS Finder with 
 # MacOS Automator: https://zeroonelabs.com/mac/open-with-vs-code-shortcut-in-finder
 if [ -f "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" ];then
-    alias code="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+    alias code="'/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code'"
 fi
 
+
+if [ $(which cargo) ];then
+    alias cb="cargo build"
+    alias cbr="cargo build --release"
+    alias cr="cargo run"
+
+fi
 
