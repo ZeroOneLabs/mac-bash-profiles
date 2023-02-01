@@ -7,6 +7,27 @@ alias trash="mv -i -t ~/.Trash/ "
 # Because searching for env vars is annoying. 
 alias printenv="printenv | sort"
 
+# Creates a directory and changes to it.
+mkdircd () {
+    if [[ ! -n $1 ]];then echo "no name passed";return 1;fi
+    mkdir -pv "${1}" && cd "${1}"
+}
+
+# Ping Up Say - a function that runs on a forever loop trying to ping a host
+pingupsay () {
+    if [[ ! -n $1 ]];then echo "no hostname passed";return 1;fi
+    echo "Will continue to try pinging the host ${1}"
+    echo "and will say 'the host is up' over your default audio device."
+    echo "Press CTRL+C to break out of this function..."
+
+    while true;do
+        if [[ $(ping -c 1 -t 5 ${1}) ]];then
+            pu_line="The host is up!"
+            say "${pu_line}";echo "${pu_line}"
+        fi
+    done
+}
+
 
 # If Terraform is installed, then create terraform aliases
 if [ $(which terraform) ];then
@@ -32,11 +53,23 @@ if [ -f "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" ]
     alias code="'/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code'"
 fi
 
-
+# Rust cargo aliases
 if [ $(which cargo) ];then
-    alias cb="cargo build"
-    alias cbr="cargo build --release"
-    alias cr="cargo run"
+    alias carb="cargo build"
+    alias carbr="cargo build --release"
+    alias carr="cargo run"
+    alias carn="cargo new"
+fi
 
+# Go aliases
+if [ $(which go) ];then
+    alias gorp="go run ."
+    alias gomt="go mod tidy"
+fi
+
+# minikube - I don't like typing k-u-b-e on my keyboard.
+# must be why so many people type 'k8s' ;-P
+if [ $(which minikube) ];then
+    alias minik="minikube"
 fi
 
