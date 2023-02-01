@@ -67,8 +67,13 @@ if [ $(which go) ];then
     alias gomt="go mod tidy"
 fi
 
-# minikube - I don't like typing k-u-b-e on my keyboard.
-# must be why so many people type 'k8s' ;-P
+# k8s stuff
+# I don't like typing k-u-b-e on my keyboard.
+# must be why so many people use 'k8s' ;-P
+if [ $(which kubectl) ];then
+    alias kctl="kubectl"
+fi
+# minikube
 if [ $(which minikube) ];then
     alias minik="minikube"
 fi
